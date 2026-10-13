@@ -1,0 +1,65 @@
+
+         SOBEL VE PREWITT OPERATORLERININ KARSILASTIRILMASI
+
+
+1. NEDIR BU OPERATORLER?
+----------------------------------------------------------------------
+Görüntü işlemede kenar tespiti yaparken resimdeki renk ve ışık 
+değişimlerine bakılır. Prewitt ve Sobel, bu kenarları bulmak için 
+resmin üzerinde gezdirilen 3x3 boyutundaki matrislerdir (filtrelerdir).
+
+
+2. MATRIS (FILTRE) YAPILARI VE FARKLARI
+----------------------------------------------------------------------
+İki filtre arasındaki temel fark, ortadaki piksellere verilen "değer" 
+yani ağırlıktır.
+
+PREWITT OPERATORU:
+Komşu piksellerin hepsine eşit değer (1) verir.
+
+* Dikey Filtre (Px):
+  [-1,  0,  1]
+  [-1,  0,  1]
+  [-1,  0,  1]
+
+* Yatay Filtre (Py):
+  [-1, -1, -1]
+  [ 0,  0,  0]
+  [ 1,  1,  1]
+
+
+SOBEL OPERATORU:
+Merkezdeki piksele daha fazla değer (2) vererek pürüzsüzleştirme 
+(bulanıklaştırma) etkisini filtreye dahil eder.
+
+* Dikey Filtre (Sx):
+  [-1,  0,  1]
+  [-2,  0,  2]
+  [-1,  0,  1]
+
+* Yatay Filtre (Sy):
+  [-1, -2, -1]
+  [ 0,  0,  0]
+  [ 1,  2,  1]
+
+
+3. KARSILASTIRMA TABLOSU
+----------------------------------------------------------------------
+ÖZELLİK              | PREWITT OPERATÖRÜ     | SOBEL OPERATÖRÜ
+----------------------------------------------------------------------
+Merkez Piksel Değeri | Eşit (1)              | Yüksek (2)
+Gürültüye Dayanıklılık| Düşük (Pürüzü kenar   | Yüksek (Gürültüyü
+                     |  zannedebilir)        |  bastırır)
+Kenar Kalitesi       | İnce ve keskin        | Daha yumuşak ve net
+Kullanım Yaygınlığı  | Temel seviye          | Endüstriyel / Yaygın
+
+
+4. SONUÇ VE DEĞERLENDİRME
+----------------------------------------------------------------------
+- Prewitt, gürültüsüz ve temiz resimlerde hızlı sonuç almak için 
+  kullanılır.
+- Sobel ise merkezdeki piksellere 2 kat fazla ağırlık verdiği için 
+  resimdeki karıncalanma ve gürültüleri filtreler. Bu yüzden gerçek 
+  hayat uygulamalarında (otonom araçlar, tıbbi görüntüleme vb.) 
+  Sobel daha çok tercih edilir.
+
